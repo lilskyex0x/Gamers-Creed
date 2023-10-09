@@ -12,6 +12,7 @@ function Home() {
   return (
     <div>
       <h1>Gamers' Creed</h1>
+      <h2>testing</h2>
     </div>
   );
 }
