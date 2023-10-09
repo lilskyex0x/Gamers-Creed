@@ -1,11 +1,22 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+import axios from 'axios';
+
+const API_URL = 'https://www.cheapshark.com/api/1.0/deals?storeID=1&upperPrice=15';
 
 const initialState = {
-  value: 0,
-}
+  gameData: [],
+};
 
-export const counterSlice = createSlice({
-  name: 'counter',
+export const fetchGamesAsync = createAsyncThunk(
+  'games/fetchGames',
+  async () => {
+    const response = await axios.get(API_URL)
+    console.log('response.data ', response.data)
+    return response.data;
+})
+
+export const HomeSlice = createSlice({
+  name: 'games',
   initialState,
   reducers: {
     increment: (state) => {
@@ -25,6 +36,6 @@ export const counterSlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const { increment, decrement, incrementByAmount } = counterSlice.actions
+export const { increment, decrement, incrementByAmount } = HomeSlice.actions
 
-export default counterSlice.reducer
+export default HomeSlice.reducer
