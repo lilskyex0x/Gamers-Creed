@@ -1,28 +1,72 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import axios from 'axios';
-
-const API_URL = 'https://www.cheapshark.com/api/1.0/deals?storeID=1&upperPrice=15';
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
 
 const initialState = {
   gameData: [],
   loading: false,
-  error: '',
+  error: "",
 };
 
+export const fetchGamesByTitle = createAsyncThunk(
+  "games/fetchGamesByTitle",
+  async (input) => {
+    const apiUrl = 'https://www.cheapshark.com/api/1.0/games';
+    const response = await axios.get(`${apiUrl}?title=${input}`);
+    return response.data.map((game) => ({
+      id: game.gameID,
+      name: game.title,
+      rating: game.steamRatingPercent,
+      textRating: game.steamRatingText,
+      score: game.metacriticScore,
+      normalPrice: game.normalPrice,
+      salePrice: game.salePrice,
+      thumb: game.thumb,
+    }));
+  }
+);
+
 export const fetchGamesAsync = createAsyncThunk(
-  'games/fetchGames',
-  async () => {
+  "games/fetchGames",
+  async (lowerPrice) => {
+    const apiUrl = `https://www.cheapshark.com/api/1.0/deals?storeID=2&lowerPrice=${lowerPrice}`;
+    const response = await axios.get(apiUrl);
+    return response.data.map((game) => ({
+      id: game.gameID,
+      name: game.title,
+      rating: game.steamRatingPercent,
+      textRating: game.steamRatingText,
+      score: game.metacriticScore,
+      normalPrice: game.normalPrice,
+      salePrice: game.salePrice,
+      thumb: game.thumb,
+    }));
+  }
+);
+
+export const fetchCombinedGames = createAsyncThunk(
+  "games/fetchCombinedGames",
+  async (_, { dispatch }) => {
     try {
-      const response = await axios.get(API_URL);
-      console.log('response.data ', response.data)
-      return response.data;
+      const gamesByTitle = await dispatch(fetchGamesByTitle('batman'));
+      const gamesByPrice = await dispatch(fetchGamesAsync(15));
+
+      const combinedGames = [...gamesByTitle, ...gamesByPrice];
+      return combinedGames;
     } catch (error) {
-      return error.message;
+      console.error("Error fetching games:", error);
+      throw error;
     }
-})
+  }
+);
+
+const handleAsyncAction = (state, action) => {
+  state.loading = action.meta.requestStatus === 'pending';
+  state.gameData = action.payload || [];
+  state.error = action.meta.requestStatus === 'rejected' ? action.error.message : '';
+};
 
 export const gameSlice = createSlice({
-  name: 'game',
+  name: "game",
   initialState,
   reducers: {},
   extraReducers: (builder) => {
@@ -30,26 +74,21 @@ export const gameSlice = createSlice({
       .addCase(fetchGamesAsync.pending, (state) => {
         state.loading = true;
       })
-      .addCase(fetchGamesAsync.fulfilled, (state, action) => {
-        state.gameData = action.payload.map((game) => ({
-          id: game.gameID,
-          name: game.title,
-          rating: game.steamRatingPercent,
-          textRating: game.steamRatingText,
-          score: game.metacriticScore,
-          normalPrice: game.normalPrice,
-          salePrice: game.salePrice,
-          thumb: game.thumb,
-        }));
-        state.loading = false;
+      .addCase(fetchGamesAsync.fulfilled, handleAsyncAction)
+      .addCase(fetchGamesAsync.rejected, handleAsyncAction)
+      .addCase(fetchGamesByTitle.pending, (state) => {
+        state.loading = true;
       })
-      .addCase(fetchGamesAsync.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.payload;
-      });
+      .addCase(fetchGamesByTitle.fulfilled, handleAsyncAction)
+      .addCase(fetchGamesByTitle.rejected, handleAsyncAction)
+      .addCase(fetchCombinedGames.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(fetchCombinedGames.fulfilled, handleAsyncAction)
+      .addCase(fetchCombinedGames.rejected, handleAsyncAction);
   },
-})
+});
 
 // export const { increment, decrement, incrementByAmount } = gameSlice.actions
 
-export default gameSlice.reducer
+export default gameSlice.reducer;

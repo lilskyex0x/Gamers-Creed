@@ -1,16 +1,18 @@
-import React, { useEffect } from "react";
+import React from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchGamesAsync } from "../../redux/Slices/gameSlice";
+import { fetchCombinedGames } from "../../redux/Slices/gameSlice";
 
-function Home() {
+function GameItems() {
   const dispatch = useDispatch();
   const games = useSelector((state) => state.game.gameData);
-  useEffect(() => {
-    dispatch(fetchGamesAsync());
+
+  useEffect(()=>{
+    fetchCombinedGames();
   }, [dispatch]);
 
   return (
-    <div className="games__container">
+    <div>
       {games.map((game) => (
         <li className="game__item" key={game.id}>
           <div className="img__container">
@@ -19,7 +21,9 @@ function Home() {
           <div className="content__container">
             <h2 className="game__title">{game.name}</h2>
             <p className="game__rating">Rating {game.rating}</p>
-            <p className="game_textRating">{game.textRating}</p>
+            <p className="game__textRating">{game.textRating}</p>
+            <p className="game__Nprice">Normal Price - {game.normalPrice}</p>
+            <p className="game__Sprice">Sale Price - {game.salePrice}</p>
           </div>
         </li>
       ))}
@@ -27,4 +31,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default GameItems;
