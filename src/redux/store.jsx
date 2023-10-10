@@ -1,8 +1,8 @@
-import { configureStore } from '@reduxjs/toolkit'
-import homeReducer from './Slices/HomeSlice'
+import { configureStore } from "@reduxjs/toolkit";
+import gameReducer from "./Slices/gameSlice";
 
 export const store = configureStore({
   reducer: {
-    home: homeReducer,
+    game: gameReducer,
   },
-})
+});
