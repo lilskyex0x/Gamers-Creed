@@ -8,12 +8,20 @@ const initialState = {
   error: "",
 };
 
+const handleAsyncAction = (state, action) => {
+  state.loading = action.meta.requestStatus === "pending";
+  if (action.meta.requestStatus === "fulfilled") {
+    state.gameData = action.payload;
+  }
+  state.error =
+    action.meta.requestStatus === "rejected" ? action.error.message : "";
+};
+
 export const fetchGamesByTitle = createAsyncThunk(
   "games/fetchGamesByTitle",
   async (input) => {
-    const apiUrl = 'https://www.cheapshark.com/api/1.0/games';
+    const apiUrl = "https://www.cheapshark.com/api/1.0/games";
     const response = await axios.get(`${apiUrl}?title=${input}`);
-    console.log('response.data ', response.data);
     const transformedData = response.data.map((game) => ({
       id: game.gameID,
       name: game.external,
@@ -34,11 +42,10 @@ export const fetchGameDetails = createAsyncThunk(
   }
 );
 
-
 export const fetchGamesAsync = createAsyncThunk(
   "games/fetchGames",
   async (lowerPrice) => {
-    const apiUrl = `https://www.cheapshark.com/api/1.0/deals?storeID=2&lowerPrice=${lowerPrice}`;
+    const apiUrl = `https://www.cheapshark.com/api/1.0/deals?storeID=3&lowerPrice=${lowerPrice}`;
     const response = await axios.get(apiUrl);
     return response.data.map((game) => ({
       id: game.gameID,
@@ -53,23 +60,10 @@ export const fetchGamesAsync = createAsyncThunk(
   }
 );
 
-const handleAsyncAction = (state, action) => {
-  state.loading = action.meta.requestStatus === 'pending';
-  if (action.meta.requestStatus === 'fulfilled') {
-    state.gameData = action.payload;
-  }
-  state.error = action.meta.requestStatus === 'rejected' ? action.error.message : '';
-};
-
-export const gameSlice = createSlice({
+const gameSlice = createSlice({
   name: "game",
   initialState,
-  reducers: {
-    filterGamesByTitle: (state, action) => {
-      const { title } = action.payload;
-      state.gameData = state.gameData.filter((game) => game.name.includes(title));
-    },
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(fetchGamesAsync.pending, (state) => {

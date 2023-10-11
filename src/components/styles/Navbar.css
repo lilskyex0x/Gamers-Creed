@@ -1,13 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100;200;300;400;500;600;700&display=swap');
 
 .navbar {
-  background-color: #e74687;
+  background-color: #1d1d1d;
+  border: 2px solid #DB005B;
   line-height: 1.5rem;
   overflow: hidden;
-}
-
-.icon {
-  color: #fff;
 }
 
 .nav__wrapper {
@@ -31,17 +28,41 @@
   text-decoration: none;
   color: white;
   font-family: 'Josefin Sans', sans-serif;
-  font-weight: 300;
+  font-weight: 600;
+  text-shadow: 
+  1px 1px 1px #DB005B,
+  -1px -1px 1px #00A0D2; 
   font-size: 15px;
   transition: color 0.3s ease;
 }
 
 .nav-link:hover {
-  color: #ddd;
+  animation: glitch 0.5s infinite;
+}
+
+@keyframes glitch {
+  0%, 100% {
+    color: #ddd;
+  }
+  25% {
+    color: #DB005B;
+  }
+  50% {
+    color: #00A0D2;
+  }
+  75% {
+    color: #67ffd9;
+  }
 }
 
 #back {
-    color: #fff;
+  color: #DB005B;
+  font-size: 17px;
+  transition: .4s ease-in-out;
+}
+
+#back:hover {
+  color: #ddd;
 }
 
 .year {

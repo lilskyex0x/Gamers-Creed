@@ -27,6 +27,6 @@ const PriceInput = () => {
       <p>Selected Lower Price: ${selectedLowerPrice}</p>
     </div>
   );
-}
+};
 
 export default PriceInput;
