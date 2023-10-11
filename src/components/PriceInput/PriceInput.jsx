@@ -5,7 +5,7 @@ import { fetchGamesAsync } from "../../redux/Slices/gameSlice";
 
 const PriceInput = () => {
   const dispatch = useDispatch();
-  const [selectedLowerPrice, setSelectedLowerPrice] = useState(29);
+  const [selectedLowerPrice, setSelectedLowerPrice] = useState();
 
   useEffect(() => {
     dispatch(fetchGamesAsync(selectedLowerPrice));
@@ -24,7 +24,6 @@ const PriceInput = () => {
           setSelectedLowerPrice(newLowerPrice);
         }}
       />
-      {/* Display the selected lower price */}
       <p>Selected Lower Price: ${selectedLowerPrice}</p>
     </div>
   );

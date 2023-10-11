@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import PriceInput from "../../components/PriceInput/PriceInput";
 import GameItems from "../../components/GameItem/GameItem";
 import Navbar from "../../components/NavBar/Navbar";
-import { fetchGamesAsync, fetchGamesByTitle } from "../../redux/Slices/gameSlice";
+import { fetchGamesAsync, filterGamesByTitle } from "../../redux/Slices/gameSlice";
 import { BsSearch } from 'react-icons/bs';
 
 function Home() {
@@ -21,7 +21,7 @@ function Home() {
   };
 
   const handleSearch = () => {
-    dispatch(fetchGamesByTitle(searchQuery));
+    dispatch(filterGamesByTitle(searchQuery));
   };
 
   const handlePriceFilter = () => {
@@ -46,7 +46,7 @@ function Home() {
         <PriceInput priceFilter={priceFilter} handlePriceInputChange={handlePriceInputChange} handlePriceFilter={handlePriceFilter} />
       </div>
       <div className="games__container">
-        <GameItems />
+        <GameItems searchQuery={searchQuery} />
       </div>
     </>
   );

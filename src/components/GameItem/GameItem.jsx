@@ -1,16 +1,21 @@
 import React from "react";
-import { Link } from "react-router-dom"; // Import Link from React Router
+import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchGamesByTitle } from "../../redux/Slices/gameSlice";
 
 function GameItems({ searchQuery }) {
   const dispatch = useDispatch();
-  const games = useSelector((state) => state.game.gameData);
+  const allGames = useSelector((state) => state.game.gameData);
+
+  const games = allGames.filter((game) =>
+    game.name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   useEffect(() => {
+    console.log('searchQuery ', searchQuery)
     if (searchQuery && searchQuery.trim() !== "") {
-      dispatch(fetchGamesByTitle(searchQuery)); // Use the searchQuery in the API request
+      dispatch(fetchGamesByTitle(searchQuery));
     }
   }, [dispatch, searchQuery]);
 

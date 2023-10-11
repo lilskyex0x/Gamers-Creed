@@ -8,6 +8,7 @@ function Detail() {
     const { id } = useParams();
     const dispatch = useDispatch();
     const gameDetail = useSelector((state) => state.game.gameDetail);
+    console.log('gameDetail ', gameDetail)
 
     useEffect(() => {
         dispatch(fetchGameDetails(id));
@@ -20,11 +21,10 @@ function Detail() {
                 <div>
                     {gameDetail ? (
                         <div>
-                            <h2>{gameDetail.name}</h2>
-                            <p>Rating: {gameDetail.rating}</p>
-                            <p>Text Rating: {gameDetail.textRating}</p>
-                            <p>Normal Price: {gameDetail.normalPrice}</p>
-                            <p>Sale Price: {gameDetail.salePrice}</p>
+                            <h2>{gameDetail.info.title}</h2>
+                            <img src={gameDetail.info.thumb} alt="" />
+                            <p>Cheapest price right now: {gameDetail.cheapestPriceEver.price}</p>
+                            <p>retail Price: {gameDetail.deals[0].retailPrice}</p>
                         </div>
                     ) : (
                         <div>Loading...</div>

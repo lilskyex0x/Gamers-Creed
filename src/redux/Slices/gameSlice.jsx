@@ -3,9 +3,9 @@ import axios from "axios";
 
 const initialState = {
   gameData: [],
+  gameDetail: null,
   loading: false,
   error: "",
-  gameDetail: null, // Added gameDetail property for detail data
 };
 
 export const fetchGamesByTitle = createAsyncThunk(
@@ -13,16 +13,15 @@ export const fetchGamesByTitle = createAsyncThunk(
   async (input) => {
     const apiUrl = 'https://www.cheapshark.com/api/1.0/games';
     const response = await axios.get(`${apiUrl}?title=${input}`);
-    return response.data.map((game) => ({
+    console.log('response.data ', response.data);
+    const transformedData = response.data.map((game) => ({
       id: game.gameID,
-      name: game.title,
-      rating: game.steamRatingPercent,
-      textRating: game.steamRatingText,
-      score: game.metacriticScore,
-      normalPrice: game.normalPrice,
-      salePrice: game.salePrice,
+      name: game.external,
+      salePrice: game.cheapest,
       thumb: game.thumb,
     }));
+
+    return transformedData;
   }
 );
 
@@ -56,14 +55,21 @@ export const fetchGamesAsync = createAsyncThunk(
 
 const handleAsyncAction = (state, action) => {
   state.loading = action.meta.requestStatus === 'pending';
-  state.gameData = action.payload || [];
+  if (action.meta.requestStatus === 'fulfilled') {
+    state.gameData = action.payload;
+  }
   state.error = action.meta.requestStatus === 'rejected' ? action.error.message : '';
 };
 
 export const gameSlice = createSlice({
   name: "game",
   initialState,
-  reducers: {},
+  reducers: {
+    filterGamesByTitle: (state, action) => {
+      const { title } = action.payload;
+      state.gameData = state.gameData.filter((game) => game.name.includes(title));
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchGamesAsync.pending, (state) => {
@@ -90,4 +96,5 @@ export const gameSlice = createSlice({
   },
 });
 
+export const { filterGamesByTitle } = gameSlice.actions;
 export default gameSlice.reducer;
