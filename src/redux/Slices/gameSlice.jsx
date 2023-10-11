@@ -5,6 +5,7 @@ const initialState = {
   gameData: [],
   loading: false,
   error: "",
+  gameDetail: null, // Added gameDetail property for detail data
 };
 
 export const fetchGamesByTitle = createAsyncThunk(
@@ -25,6 +26,16 @@ export const fetchGamesByTitle = createAsyncThunk(
   }
 );
 
+export const fetchGameDetails = createAsyncThunk(
+  "games/fetchGameDetails",
+  async (gameId) => {
+    const apiUrl = `https://www.cheapshark.com/api/1.0/games?id=${gameId}`;
+    const response = await axios.get(apiUrl);
+    return response.data;
+  }
+);
+
+
 export const fetchGamesAsync = createAsyncThunk(
   "games/fetchGames",
   async (lowerPrice) => {
@@ -40,22 +51,6 @@ export const fetchGamesAsync = createAsyncThunk(
       salePrice: game.salePrice,
       thumb: game.thumb,
     }));
-  }
-);
-
-export const fetchCombinedGames = createAsyncThunk(
-  "games/fetchCombinedGames",
-  async (_, { dispatch }) => {
-    try {
-      const gamesByTitle = await dispatch(fetchGamesByTitle('batman'));
-      const gamesByPrice = await dispatch(fetchGamesAsync(15));
-
-      const combinedGames = [...gamesByTitle, ...gamesByPrice];
-      return combinedGames;
-    } catch (error) {
-      console.error("Error fetching games:", error);
-      throw error;
-    }
   }
 );
 
@@ -81,14 +76,18 @@ export const gameSlice = createSlice({
       })
       .addCase(fetchGamesByTitle.fulfilled, handleAsyncAction)
       .addCase(fetchGamesByTitle.rejected, handleAsyncAction)
-      .addCase(fetchCombinedGames.pending, (state) => {
+      .addCase(fetchGameDetails.pending, (state) => {
         state.loading = true;
       })
-      .addCase(fetchCombinedGames.fulfilled, handleAsyncAction)
-      .addCase(fetchCombinedGames.rejected, handleAsyncAction);
+      .addCase(fetchGameDetails.fulfilled, (state, action) => {
+        state.loading = false;
+        state.gameDetail = action.payload;
+      })
+      .addCase(fetchGameDetails.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      });
   },
 });
-
-// export const { increment, decrement, incrementByAmount } = gameSlice.actions
 
 export default gameSlice.reducer;

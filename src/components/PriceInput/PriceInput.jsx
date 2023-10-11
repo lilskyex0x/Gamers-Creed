@@ -24,6 +24,8 @@ const PriceInput = () => {
           setSelectedLowerPrice(newLowerPrice);
         }}
       />
+      {/* Display the selected lower price */}
+      <p>Selected Lower Price: ${selectedLowerPrice}</p>
     </div>
   );
 }
