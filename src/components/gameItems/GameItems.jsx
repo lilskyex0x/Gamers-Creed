@@ -30,10 +30,12 @@ function GameItems({ searchQuery }) {
             </div>
             <div className="content__container">
               <h2 className="game__title">{game.name}</h2>
-              <p className="game__rating">Rating {game.rating}</p>
-              <p className="game__textRating">{game.textRating}</p>
-              <p className="game__Nprice">Normal Price - {game.normalPrice}</p>
-              <p className="game__Sprice">Sale Price - {game.salePrice}</p>
+              <div className="about__game">
+                <p className="game__rating">Rating {game.rating}</p>
+                <p className="game__textRating">{game.textRating}</p>
+                <p className="game__Nprice">Normal Price - {game.normalPrice}</p>
+                <p className="game__Sprice">Sale Price - {game.salePrice}</p>
+              </div>
             </div>
           </Link>
         </li>
