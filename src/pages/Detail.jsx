@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { fetchGameDetails, fetchGamesAsync } from "../redux/Slices/gameSlice";
-import Navbar from "../components/navbar/Navbar";
+import Navbar from "../components/navBar/Navbar";
 import '../App.css';
 
 function Detail() {

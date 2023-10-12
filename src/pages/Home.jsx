@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import PriceInput from "../components/features/PriceInput";
 import GameItems from "../components/gameItems/GameItems";
-import Navbar from "../components/navbar/Navbar";
+import Navbar from "../components/navBar/Navbar";
 import { fetchGamesAsync } from "../redux/Slices/gameSlice";
 import SearchGames from "../components/features/SearchGames";
 import '../App.css';
@@ -39,7 +39,7 @@ function Home() {
           handleSearchSubmit={handleSearchSubmit}
         />
       </header>
-      <div id="filterContainer">
+      <div id="filter__container">
         <PriceInput
           priceFilter={priceFilter}
           handlePriceInputChange={handlePriceInputChange}
