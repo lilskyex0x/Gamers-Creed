@@ -5,13 +5,19 @@
     position: absolute;
     gap: 10px;
     z-index: 999;
-    margin-top: 80px;
+    margin-top: 90px;
     margin-left: 15px;
+}
+
+#form > svg {
+    transform: scale(1.2);
+    transform-origin: center;
 }
 
 #searchInput {
     width: 90%;
-    line-height: 1.5rem;
+    font-size: 16px;
+    line-height: 1.8rem;
     background-color: #519c901a;
     border: 1px solid #DB005B;
     border-radius: 10px;
@@ -19,5 +25,5 @@
 }
 
 #searchInput::placeholder {
-    color: #67ffd9;
+    color: #67ffd9aa;
 }
