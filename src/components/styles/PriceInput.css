@@ -1,7 +1,7 @@
 #lowerPrice::-webkit-inner-spin-button,
 #lowerPrice::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
 }
 
 #lowerPrice {
@@ -13,7 +13,7 @@
   border-radius: 10px;
   padding: 8px 8px 8px 4px;
   margin-left: 8px;
-  box-shadow: inset 6px 6px 6px #590126b6, inset -6px -6px 6px #01638176;
+  box-shadow: inset 6px 6px 6px #590126b6, inset -3px -3px 3px #02b2e863;
 }
 
 #lowerPrice::placeholder {
@@ -23,5 +23,6 @@
 }
 
 #lowerPrice:focus {
-    outline: 2px solid #67ffd9; /* You can adjust the color and thickness */
+  outline: 2px solid #67ffd9;
+  /* You can adjust the color and thickness */
 }
