@@ -1,9 +1,15 @@
 .game__item {
-  background-color: #519c901f;
+  background-color: #044d4145;
   border: 2px solid #db005b;
   border-radius: 10px;
   backdrop-filter: blur(5px);
   padding: 10px;
+}
+
+.game__item > a {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
 }
 
 .img__container {
@@ -22,4 +28,9 @@
   overflow: hidden;
   width: 170px;
   height: auto;
+}
+
+.content__container {
+  height: 200px;
+  
 }
