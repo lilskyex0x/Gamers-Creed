@@ -13,11 +13,14 @@
 }
 
 body {
+  min-width: 424px;
   background-image: url(./assets/Wallpaper\ phone\ 4k\ -\ Japanese\ style\ neon\ shallows.jpeg);
   background-repeat: repeat;
   background-size: auto;
   background-position: center;
 }
+
+/* ----------------------------Home CSS Starts Here---------------------------------- */
 
 .hero {
   width: 100%;
@@ -72,3 +75,80 @@ body {
   padding: 10px 13px 10px 13px;
   background-color: #3e0e0edf;
 }
+
+/* ----------------------------Home CSS Ends Here---------------------------------- */
+
+/* ----------------------------Detail CSS Starts Here------------------------------ */
+
+.detail__container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #3e0e0e7e;
+  margin: 10px;
+  padding: 20px;
+  position: relative;
+  border: 2px solid #db005b;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.detail__container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, #00c896, #aa0147);
+  opacity: 0.5;
+  z-index: -1;
+}
+
+.detail__contents {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  gap: 25px;
+  color: #fff;
+}
+
+.detail__contents>h2 {
+  text-shadow: 1px 1px 1px #db005b, -1px -1px 1px #00a0d2;
+}
+
+.detail__contents>img {
+  width: 70%;
+  border-radius: 10px;
+  margin: 10px 0;
+}
+
+.detail__contents .loading {
+  font-size: 1.5em;
+}
+
+.detail__contents .deals {
+  margin-top: 20px;
+}
+
+.detail__contents .deals h2 {
+  font-size: 1.2em;
+  color: #67ffd9;
+}
+
+.detail__contents .deal {
+  margin: 10px 0;
+  border: 2px solid #67ffd9;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.detail__contents .no-deals {
+  font-weight: bold;
+  color: #67ffd9;
+}
+
+
+/* ----------------------------Detail CSS Ends Here------------------------------ */
