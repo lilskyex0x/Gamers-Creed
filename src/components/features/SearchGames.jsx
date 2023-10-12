@@ -15,6 +15,7 @@ function SearchGames({
         placeholder="Search Games"
         value={searchQuery}
         onChange={handleSearchInputChange}
+        autocomplete="off"
       />
       <BsSearch />
     </form>
