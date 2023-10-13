@@ -1,7 +1,7 @@
 <a name="readme-top"></a>
 
 <div align="center">
-  <img src="logo-removebg.png" alt="logo" width="210"  height="auto" />
+  <img src="logo-removebg.png" alt="logo" width="300"  height="auto" />
   <br/>
 
   <h3><b>Gamers' Creed</b></h3>
@@ -68,7 +68,7 @@ Clone this repository to your desired folder:
 
 ```sh
   cd my-folder
-  git clone https://github.com/lilskyex0x/React-Capstone.git
+  git clone https://github.com/lilskyex0x/Gamers-Creed.git
 ```
 
 ### Install
