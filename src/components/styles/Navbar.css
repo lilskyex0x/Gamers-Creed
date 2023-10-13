@@ -2,7 +2,7 @@
 
 .navbar {
   background-color: #1d1d1d;
-  border: 2px solid #DB005B;
+  border: 2px solid #db005b;
   line-height: 1.5rem;
   overflow: hidden;
 }
@@ -29,9 +29,9 @@
   color: white;
   font-family: 'Josefin Sans', sans-serif;
   font-weight: 600;
-  text-shadow: 
-  1px 1px 1px #DB005B,
-  -1px -1px 1px #00A0D2; 
+  text-shadow:
+    1px 1px 1px #db005b,
+    -1px -1px 1px #00a0d2;
   font-size: 15px;
   transition: color 0.3s ease;
 }
@@ -41,24 +41,28 @@
 }
 
 @keyframes glitch {
-  0%, 100% {
+  0%,
+  100% {
     color: #ddd;
   }
+
   25% {
-    color: #DB005B;
+    color: #db005b;
   }
+
   50% {
-    color: #00A0D2;
+    color: #00a0d2;
   }
+
   75% {
     color: #67ffd9;
   }
 }
 
 #back {
-  color: #DB005B;
+  color: #db005b;
   font-size: 17px;
-  transition: .4s ease-in-out;
+  transition: 0.4s ease-in-out;
 }
 
 #back:hover {
@@ -66,15 +70,15 @@
 }
 
 .year {
-    line-height: 30px;
-    font-weight: 300;
+  line-height: 30px;
+  font-weight: 300;
 }
 
 .mic__container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
 }
 
 @media screen and (max-width: 600px) {
@@ -87,6 +91,7 @@
     flex-direction: column;
     align-items: center;
     text-align: center;
+
     /* width: 100%; */
   }
 

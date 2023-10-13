@@ -1,16 +1,16 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import PriceInput from "../components/features/PriceInput";
-import GameItems from "../components/gameItems/GameItems";
-import Navbar from "../components/navBar/Navbar";
-import { fetchGamesAsync } from "../redux/Slices/gameSlice";
-import SearchGames from "../components/features/SearchGames";
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import PriceInput from '../components/features/PriceInput';
+import GameItems from '../components/gameItems/GameItems';
+import Navbar from '../components/navBar/Navbar';
+import { fetchGamesAsync } from '../redux/Slices/gameSlice';
+import SearchGames from '../components/features/SearchGames';
 import '../App.css';
 
 function Home() {
   const dispatch = useDispatch();
-  const [searchQuery, setSearchQuery] = useState("");
-  const [priceFilter, setPriceFilter] = useState("");
+  const [searchQuery, setSearchQuery] = useState('');
+  const [priceFilter, setPriceFilter] = useState('');
 
   const handleSearchInputChange = (event) => {
     setSearchQuery(event.target.value);

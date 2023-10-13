@@ -1,8 +1,8 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
-import { fetchGameDetails, fetchGamesAsync } from "../redux/Slices/gameSlice";
-import Navbar from "../components/navBar/Navbar";
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
+import { fetchGameDetails, fetchGamesAsync } from '../redux/Slices/gameSlice';
+import Navbar from '../components/navBar/Navbar';
 import '../App.css';
 
 function Detail() {
@@ -13,7 +13,7 @@ function Detail() {
 
   useEffect(() => {
     dispatch(fetchGameDetails(id));
-    dispatch(fetchGamesAsync(""));
+    dispatch(fetchGamesAsync(''));
   }, [dispatch, id]);
 
   return (
@@ -22,23 +22,57 @@ function Detail() {
       <main className="detail__container">
         {gameDetail ? (
           <div className="detail__contents">
-            <h2>{gameDetail.info.title}</h2>
-            <img src={gameDetail.info.thumb} alt="" />
-            <p>
-              Cheapest price right now: ${gameDetail.cheapestPriceEver.price}
-            </p>
+            <div className="header__detail">
+              <h2>{gameDetail.info.title}</h2>
+              <img src={gameDetail.info.thumb} alt="" />
+            </div>
+            <div className="lineThrough" />
+            <div className="cheapPrice">
+              <span className="container">
+                <h2 className="title">
+                  <span className="title-word title-word-1">Cheapest</span>
+                  <span className="title-word title-word-2">Price</span>
+                  <span className="title-word title-word-3">Right</span>
+                  <span className="title-word title-word-4">Now!</span>
+                </h2>
+              </span>
+              <span>
+                <h2>
+                  &quot; $
+                  {gameDetail.cheapestPriceEver.price}
+                  {' '}
+                  &quot;
+                </h2>
+              </span>
+            </div>
+            <div className="lineThrough" />
             {gameData ? (
-              <div>
+              <div className="rating__detail">
                 {gameData.find((game) => game.id === id) ? (
                   gameData.map((game) => {
                     if (game.id === id) {
                       return (
-                        <div key={game.id}>
-                          <p>Rating: {game.rating}</p>
-                          <p>Text Rating: {game.textRating}</p>
-                          <p>Metacritic Score: {game.score}</p>
-                          <p>Normal Price: {game.normalPrice}</p>
-                          <p>Sale Price: {game.salePrice}</p>
+                        <div className="ratings" key={game.id}>
+                          <p>
+                            Rating:
+                            {game.rating ? game.rating : 10}
+                          </p>
+                          <p>
+                            Text Rating:
+                            {game.textRating ? game.textRating : 'No rating'}
+                          </p>
+                          <p>
+                            Metacritic Score:
+                            {game.score}
+                          </p>
+                          <p>
+                            Normal Price:  $
+                            {game.normalPrice}
+                          </p>
+                          <p>
+                            Sale Price: $
+                            {game.salePrice}
+                          </p>
                         </div>
                       );
                     }
@@ -55,11 +89,23 @@ function Detail() {
               <div className="deals">
                 <h2>Deals Available!</h2>
                 {gameDetail.deals.slice(0, 3).map((deal, index) => (
-                  <div className="deal" key={index}>
-                    <h3>Deal {index + 1}</h3>
-                    <p>Deal price: {deal.price}</p>
-                    <p>Retail Price: ${deal.retailPrice}</p>
-                    <p>You will save: ${deal.savings}</p>
+                  <div className="deal" key={deal.id}>
+                    <h3>
+                      Deal-
+                      {index + 1}
+                    </h3>
+                    <p>
+                      Deal price: $
+                      {deal.price}
+                    </p>
+                    <p>
+                      Retail Price: $
+                      {deal.retailPrice}
+                    </p>
+                    <p>
+                      You will save: $
+                      {deal.savings}
+                    </p>
                   </div>
                 ))}
               </div>
@@ -71,7 +117,6 @@ function Detail() {
           <div className="loading">Loading...</div>
         )}
       </main>
-
     </>
   );
 }
