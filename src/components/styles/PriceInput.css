@@ -1,0 +1,29 @@
+#lowerPrice {
+  width: 50px;
+  line-height: 1.3rem;
+  font-size: 16px;
+  background-color: #519c901a;
+  border: 1px solid #db005b;
+  border-radius: 10px;
+  padding: 8px 8px 8px 4px;
+  margin-left: 8px;
+  box-shadow: inset 6px 6px 6px #590126b6, inset -3px -3px 3px #02b2e863;
+}
+
+#lowerPrice::-webkit-inner-spin-button,
+#lowerPrice::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+#lowerPrice::placeholder {
+  color: #67ffd9;
+  direction: rtl;
+  text-align: left;
+}
+
+#lowerPrice:focus {
+  outline: 2px solid #67ffd9;
+
+  /* You can adjust the color and thickness */
+}

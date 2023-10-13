@@ -28,7 +28,7 @@
 - [🙏 Acknowledgements](#acknowledgements)
 - [📝 License](#license)
 
-# 📖 BookStore2.0 <a name="about-project"></a>
+# 📖 Gamers' Creed <a name="about-project"></a>
 
 **Gamers' Creed** is an innovative and visually stunning web application that redefines the way we experience and interact with games.
 

@@ -1,7 +1,8 @@
-import React from "react";
-import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import { fetchGamesAsync } from "../../redux/Slices/gameSlice";
+import React, { useEffect, useState } from 'react';
+
+import { useDispatch } from 'react-redux';
+import { fetchGamesAsync } from '../../redux/Slices/gameSlice';
+import '../styles/PriceInput.css';
 
 const PriceInput = () => {
   const dispatch = useDispatch();
@@ -12,20 +13,28 @@ const PriceInput = () => {
   }, [selectedLowerPrice, dispatch]);
 
   return (
-    <div>
-      <label htmlFor="lowerPrice">Enter Base Price:</label>
-      <input
-        type="number"
-        id="lowerPrice"
-        name="lowerPrice"
-        value={selectedLowerPrice}
-        onChange={(e) => {
-          const newLowerPrice = e.target.value;
-          setSelectedLowerPrice(newLowerPrice);
-        }}
-      />
-      <p>Selected Lower Price: ${selectedLowerPrice}</p>
-    </div>
+    <>
+      <span>
+        <p>
+          Selected Lower Price: $
+          {selectedLowerPrice}
+        </p>
+      </span>
+      <div className="price__input">
+        <label htmlFor="lowerPrice">Enter Base Price:</label>
+        <input
+          type="number"
+          id="lowerPrice"
+          name="lowerPrice"
+          placeholder="     $"
+          value={selectedLowerPrice}
+          onChange={(e) => {
+            const newLowerPrice = e.target.value;
+            setSelectedLowerPrice(newLowerPrice);
+          }}
+        />
+      </div>
+    </>
   );
 };
 

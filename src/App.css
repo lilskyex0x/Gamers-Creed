@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100;200;300;400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100;200;300;400;500;600;700&display=swap");
 
 * {
   margin: 0;
@@ -6,18 +6,26 @@
   box-sizing: border-box;
   text-decoration: none;
   list-style: none;
-  font-family: 'Josefin Sans', sans-serif;
+  font-family: "Josefin Sans", sans-serif;
   color: #67ffd9;
+  text-shadow:
+    -1px -1px 0 black,
+    1px -1px 0 black,
+    -1px 1px 0 black,
+    1px 1px 0 black;
 }
 
 body {
+  min-width: 424px;
   background-image: url(./assets/Wallpaper\ phone\ 4k\ -\ Japanese\ style\ neon\ shallows.jpeg);
   background-repeat: repeat;
   background-size: auto;
   background-position: center;
 }
 
-.hero{
+/* ----------------------------Home CSS Starts Here---------------------------------- */
+
+.hero {
   width: 100%;
   height: 300px;
   display: flex;
@@ -28,13 +36,13 @@ body {
   background-size: cover;
   position: relative;
   border: 3px solid transparent;
-  border-image: linear-gradient(to right, #DB005B, #3e0e0e, #67ffd9);
+  border-image: linear-gradient(to right, #db005b, #3e0e0e, #67ffd9);
   border-image-slice: 1;
   z-index: 1;
 }
 
 .hero::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -44,12 +52,10 @@ body {
   z-index: 1;
 }
 
-.hero__title{
+.hero__title {
   position: absolute;
   z-index: 2;
-  text-shadow: 
-  1px 1px 1px #DB005B,
-  -1px -1px 1px #00A0D2; 
+  text-shadow: 1px 1px 1px #db005b, -1px -1px 1px #00a0d2;
 }
 
 .search__input {
@@ -61,5 +67,182 @@ body {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 10px;
-  margin: 0px 13px 0px 13px;
+  margin: 0 13px 0 13px;
 }
+
+#filter__container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 13px 10px 13px;
+  background-color: #3e0e0edf;
+}
+
+/* ----------------------------Home CSS Ends Here---------------------------------- */
+
+/* ----------------------------Detail CSS Starts Here------------------------------ */
+
+.detail__container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #3e0e0e7e;
+  margin: 10px;
+  padding: 20px;
+  position: relative;
+  border: 2px solid #db005b;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.detail__container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, #00c896, #aa0147);
+  opacity: 0.5;
+  z-index: -1;
+}
+
+.detail__contents {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  gap: 25px;
+  color: #fff;
+}
+
+.detail__contents .loading {
+  font-size: 1.5em;
+}
+
+.detail__contents .deals {
+  margin-top: 20px;
+}
+
+.header__detail > h2 {
+  font-style: italic;
+  text-align: end;
+  line-height: 40px;
+  font-size: 1.5rem;
+  margin: 40px 0;
+  text-shadow: 1px 1px 1px #db005b, -1px -1px 1px #00a0d2;
+}
+
+.detail__contents .deals h2 {
+  font-size: 1.2em;
+  color: #67ffd9;
+}
+
+.detail__contents .deal {
+  width: 400px;
+  margin: 10px 0;
+  border-top: 2px solid #67ffd9;
+  padding: 15px;
+  border-radius: 10px;
+  display: flex;
+  gap: 15px;
+}
+
+.detail__contents .no-deals {
+  font-weight: bold;
+  color: #67ffd9;
+}
+
+.header__detail {
+  width: 350px;
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 30px;
+}
+
+.header__detail > img {
+  width: 70%;
+  border-radius: 10px;
+  margin: 10px 0;
+}
+
+.lineThrough {
+  width: 300px;
+  border-bottom: 1px solid #67ffd9;
+}
+
+.cheapPrice {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.title-word {
+  animation: color-animation 4s linear infinite;
+}
+
+.title-word-1 {
+  --color-1: #ff9551;
+  --color-2: #31e1f7;
+  --color-3: #f77;
+}
+
+.title-word-2 {
+  --color-1: #dbad4a;
+  --color-2: #b9fff8;
+  --color-3: #d800a6;
+}
+
+.title-word-3 {
+  --color-1: #b9fff8;
+  --color-2: #f77;
+  --color-3: #b9fff8;
+}
+
+.title-word-4 {
+  --color-1: #31e1f7;
+  --color-2: #ff9551;
+  --color-3: #f77;
+}
+
+@keyframes color-animation {
+  0% { color: var(--color-1); }
+  32% { color: var(--color-1); }
+  33% { color: var(--color-2); }
+  65% { color: var(--color-2); }
+  66% { color: var(--color-3); }
+  99% { color: var(--color-3); }
+  100% { color: var(--color-1); }
+}
+
+.rating__detail {
+  display: flex;
+  justify-content: center;
+  text-align: left;
+  width: 100%;
+}
+
+.ratings {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 20px;
+  line-height: 1.5rem;
+}
+
+.ratings > p {
+  padding: 2px;
+  border-radius: 10px;
+  border-bottom: 1px solid #aa0147;
+}
+
+@media screen and (max-width: 600px) {
+  .detail__container {
+    max-width: 600px;
+  }
+}
+
+/* Deal section CSS-------------------------- */
+
+/* ----------------------------Detail CSS Ends Here------------------------------ */
