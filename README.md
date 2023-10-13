@@ -47,6 +47,8 @@
 
 - **Home page**
 - **Detail page**
+- **Game Search feature with title**
+- **Game Search feature with lowest Price**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
