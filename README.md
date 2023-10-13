@@ -14,6 +14,7 @@
   - [🛠 Built With](#built-with)
     - [Tech Stack](#tech-stack)
     - [Key Features](#key-features)
+  - [🚀 Live Demo](#live-demo)
 - [💻 Getting Started](#getting-started)
   - [Setup](#setup)
   - [Prerequisites](#prerequisites)
@@ -47,6 +48,12 @@
 
 - **Home page**
 - **Detail page**
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## 🚀 Live Demo <a name="live-demo"></a>
+
+- [Gamers' Creed](https://gamers-creed.onrender.com)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
